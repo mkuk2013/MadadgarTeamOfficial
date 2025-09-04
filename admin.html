@@ -29,242 +29,237 @@
     .text-ajrak-blue { color: var(--ajrak-dark-blue); }
     .bg-ajrak-red { background-color: var(--ajrak-red); }
     .bg-ajrak-blue { background-color: var(--ajrak-dark-blue); }
-    
-    .table-container {
-        overflow-x: auto;
-    }
-
-    @media (max-width: 768px) {
-        .data-table th, .data-table td {
-            font-size: 0.75rem; /* Smaller font on mobile */
-            padding: 0.5rem;
-        }
-    }
   </style>
 </head>
-<body class="p-4 md:p-8">
-
-  <div id="message-box" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full border-2 border-ajrak-red">
-          <h3 class="text-xl font-bold text-ajrak-red mb-4 text-center">اطلاع</h3>
-          <p id="message-text" class="text-gray-700 text-center"></p>
-          <div class="mt-6 flex justify-center">
-              <button onclick="document.getElementById('message-box').classList.add('hidden')" class="bg-ajrak-red text-white py-2 px-6 rounded-full hover:bg-red-900 transition-colors">ٺيڪ آهي</button>
-          </div>
-      </div>
-  </div>
-
-  <div id="login-section" class="flex flex-col items-center justify-center min-h-screen">
-    <div class="ajrak-container p-8 md:p-12 rounded-lg w-full max-w-md">
-      <h1 class="text-3xl md:text-4xl font-bold text-ajrak-blue text-center mb-6">ايڊمن پينل لاگ اِن</h1>
-      <p class="text-center text-gray-700 mb-8">اڳتي وڌڻ لاءِ پنهنجي ايميل ۽ پاسورڊ داخل ڪريو.</p>
-      <form id="login-form" class="space-y-4">
-        <div>
-          <label for="email" class="block text-gray-700 font-bold mb-2">ايميل</label>
-          <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" required>
-        </div>
-        <div>
-          <label for="password" class="block text-gray-700 font-bold mb-2">پاسورڊ</label>
-          <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" required>
-        </div>
-        <button type="submit" class="w-full bg-ajrak-red text-white font-bold py-3 rounded-full hover:bg-red-900 transition-colors">
-          لاگ اِن ڪريو
-        </button>
-      </form>
-      <p id="login-status" class="mt-4 text-center text-sm text-red-600"></p>
-    </div>
-  </div>
-
-  <div id="dashboard-section" class="hidden">
-    <header class="flex flex-col md:flex-row justify-between items-center py-4 md:py-8 px-4 bg-white shadow-md rounded-lg mb-6">
-      <h1 class="text-3xl md:text-4xl font-bold text-ajrak-blue">رضاڪارن جو ڊيٽا</h1>
-      <div class="flex flex-col md:flex-row gap-4 mt-4 md:mt-0">
-          <button id="refresh-btn" class="bg-ajrak-blue text-white py-2 px-6 rounded-full hover:bg-blue-900 transition-colors">
-            ڊيٽا ريفريش ڪريو
-          </button>
-          <button id="delete-all-btn" class="bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700 transition-colors">
-            سڀ ڊيٽا ختم ڪريو
-          </button>
-          <button id="logout-btn" class="bg-ajrak-blue text-white py-2 px-6 rounded-full hover:bg-blue-900 transition-colors">
-            لاگ آئوٽ
-          </button>
-      </div>
+<body>
+  <div class="container mx-auto p-4 md:p-8">
+    <header class="text-center mb-10">
+      <h1 class="text-4xl md:text-5xl font-bold text-ajrak-blue">مددگار ٽيم | ايڊمن پينل</h1>
+      <p class="text-xl text-ajrak-red mt-2">ڊيش بورڊ</p>
     </header>
-    
-    <div class="ajrak-container p-6 rounded-lg table-container">
-        <table class="w-full data-table text-right border-collapse">
+
+    <!-- Login Section -->
+    <section id="login-section" class="max-w-md mx-auto ajrak-container p-6 rounded-lg shadow-xl">
+      <h2 class="text-2xl font-bold text-center text-ajrak-red mb-6">لاگ ان</h2>
+      <form id="login-form">
+        <div class="mb-4">
+          <label for="username" class="block text-gray-700 font-bold mb-2">ايميل (يوزر نالو)</label>
+          <input type="email" id="username" name="username" class="w-full px-3 py-2 border rounded-lg" required>
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block text-gray-700 font-bold mb-2">پاسورڊ</label>
+          <input type="password" id="password" name="password" class="w-full px-3 py-2 border rounded-lg" required>
+        </div>
+        <button type="submit" class="w-full bg-ajrak-blue text-white font-bold py-3 rounded-lg hover:bg-blue-900 transition-colors">لاگ ان ڪريو</button>
+      </form>
+      <p id="login-status" class="mt-4 text-center"></p>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard-section" class="hidden">
+      <div class="flex justify-between items-center mb-6">
+        <button id="logout-btn" class="bg-ajrak-red text-white py-2 px-4 rounded-lg hover:bg-red-900 transition-colors">لاگ آئوٽ</button>
+        <div class="flex space-x-2 space-x-reverse">
+          <button id="refresh-btn" class="bg-ajrak-blue text-white py-2 px-4 rounded-lg hover:bg-blue-900 transition-colors">ري فريش</button>
+        </div>
+      </div>
+
+      <div id="status-message" class="text-center text-lg font-bold mb-4"></div>
+
+      <!-- Volunteer Data Section -->
+      <div class="ajrak-container p-6 rounded-lg shadow-xl mb-8">
+        <h2 class="text-3xl font-bold text-ajrak-blue mb-4">رضاڪار (Volunteers)</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border-collapse rounded-lg overflow-hidden">
             <thead class="bg-ajrak-blue text-white">
-                <tr class="rtl:text-right">
-                    <th class="py-3 px-4 rounded-tr-lg border-b border-gray-200">نالو</th>
-                    <th class="py-3 px-4 border-b border-gray-200">موبائل نمبر</th>
-                    <th class="py-3 px-4 rounded-tl-lg border-b border-gray-200">پيغام</th>
-                </tr>
+              <tr>
+                <th class="py-2 px-4 text-right">نالو</th>
+                <th class="py-2 px-4 text-right">موبائل نمبر</th>
+                <th class="py-2 px-4 text-right">پيغام</th>
+              </tr>
             </thead>
-            <tbody id="data-table-body" class="bg-white">
-                <tr>
-                    <td colspan="3" class="text-center py-4 text-gray-500">ڊيٽا لوڊ ٿي رهيو آهي...</td>
-                </tr>
+            <tbody id="volunteer-table-body">
+              <!-- Volunteer data will be inserted here -->
             </tbody>
-        </table>
-    </div>
+          </table>
+        </div>
+      </div>
+
+      <!-- Help Request Data Section -->
+      <div class="ajrak-container p-6 rounded-lg shadow-xl">
+        <h2 class="text-3xl font-bold text-ajrak-blue mb-4">مدد جي درخواستون (Help Requests)</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white border-collapse rounded-lg overflow-hidden">
+            <thead class="bg-ajrak-red text-white">
+              <tr>
+                <th class="py-2 px-4 text-right">نالو</th>
+                <th class="py-2 px-4 text-right">موبائل نمبر</th>
+                <th class="py-2 px-4 text-right">پتو</th>
+                <th class="py-2 px-4 text-right">تفصيل</th>
+              </tr>
+            </thead>
+            <tbody id="help-request-table-body">
+              <!-- Help request data will be inserted here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   </div>
 
   <script type="module">
-    // Supabase imports
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.43.4/+esm';
-  
-    // Supabase URL and Anon Key provided from the previous file
-    const supabaseUrl = 'https://flcvjrbsijwpfjvpvzzp.supabase.co';
-    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsY3ZqcmJzaWp3cGZqdnB2enpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5OTQzNTIsImV4cCI6MjA3MjU3MDM1Mn0.RQ14jDfnIVlga5LnfNA-mC79qtvTcut0LNkCV5_Sk_M';
-  
-    // Initialize Supabase client
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    // Supabase configuration
+    const SUPABASE_URL = 'https://flcvjrbsijwpfjvpvzzp.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsY3ZqcmJzaWp3cGZqdnB2enpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5OTQzNTIsImV4cCI6MjA3MjU3MDM1Mn0.RQ14jDfnIVlga5LnfNA-mC79qtvTcut0LNkCV5_Sk_M';
 
-    // Get DOM elements
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.44.2/+esm';
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
     const loginSection = document.getElementById('login-section');
     const dashboardSection = document.getElementById('dashboard-section');
     const loginForm = document.getElementById('login-form');
     const loginStatus = document.getElementById('login-status');
     const logoutBtn = document.getElementById('logout-btn');
     const refreshBtn = document.getElementById('refresh-btn');
-    const deleteAllBtn = document.getElementById('delete-all-btn');
-    const dataTableBody = document.getElementById('data-table-body');
-    const messageBox = document.getElementById('message-box');
-    const messageText = document.getElementById('message-text');
+    const volunteerTableBody = document.getElementById('volunteer-table-body');
+    const helpRequestTableBody = document.getElementById('help-request-table-body');
+    const statusMessageDiv = document.getElementById('status-message');
 
-    let refreshInterval;
-    
-    // Function to show custom message
-    function showMessage(text) {
-        messageText.textContent = text;
-        messageBox.classList.remove('hidden');
+    let autoRefreshInterval;
+
+    function showMessage(message, isError = false) {
+      statusMessageDiv.textContent = message;
+      statusMessageDiv.style.color = isError ? 'red' : 'green';
     }
 
     // Function to fetch and display volunteer data
     async function fetchVolunteerData() {
-        // Show loading state
-        dataTableBody.innerHTML = '<tr><td colspan="3" class="text-center py-4 text-gray-500">ڊيٽا لوڊ ٿي رهيو آهي...</td></tr>';
-        
-        const { data, error } = await supabase
-            .from('volunteers')
-            .select('*')
-            .order('timestamp', { ascending: false });
+      const { data, error } = await supabase
+        .from('volunteers')
+        .select('*')
+        .order('timestamp', { ascending: false }); // Sort by timestamp
 
-        if (error) {
-            console.error('Error fetching data:', error);
-            showMessage('ڊيٽا لوڊ ڪرڻ ۾ ناڪام.');
-            dataTableBody.innerHTML = '<tr><td colspan="3" class="text-center py-4 text-red-600">ڊيٽا لوڊ نه ٿي سگهيو.</td></tr>';
-            return;
-        }
-
-        if (data.length === 0) {
-            dataTableBody.innerHTML = '<tr><td colspan="3" class="text-center py-4 text-gray-500">ڪو به ڊيٽا نه مليو.</td></tr>';
-            return;
-        }
-
-        // Clear existing table data
-        dataTableBody.innerHTML = '';
-        
-        // Populate the table with fetched data
+      if (error) {
+        console.error('Error fetching volunteer data:', error);
+        showMessage('رضاکارن جي ڊيٽا حاصل ڪرڻ ۾ ناڪامي.', true);
+        return;
+      }
+      
+      volunteerTableBody.innerHTML = ''; // Clear previous data
+      if (data && data.length > 0) {
         data.forEach(volunteer => {
-            const row = document.createElement('tr');
-            row.className = 'border-b last:border-b-0 hover:bg-gray-50 transition-colors';
-            row.innerHTML = `
-                <td class="py-3 px-4">${volunteer.name}</td>
-                <td class="py-3 px-4">${volunteer.phone}</td>
-                <td class="py-3 px-4">${volunteer.message}</td>
-            `;
-            dataTableBody.appendChild(row);
+          const row = document.createElement('tr');
+          row.className = 'border-b hover:bg-gray-50';
+          row.innerHTML = `
+            <td class="py-2 px-4">${volunteer.name}</td>
+            <td class="py-2 px-4">${volunteer.phone}</td>
+            <td class="py-2 px-4">${volunteer.message}</td>
+          `;
+          volunteerTableBody.appendChild(row);
         });
+        showMessage('رضاڪارن جي ڊيٽا ڪاميابي سان حاصل ڪئي وئي.', false);
+      } else {
+        showMessage('رضاڪارن جي ڪا به ڊيٽا نه ملي.', true);
+      }
     }
 
-    // Function to start auto-refresh
-    function startAutoRefresh() {
-        if (refreshInterval) {
-            clearInterval(refreshInterval);
-        }
-        refreshInterval = setInterval(fetchVolunteerData, 30000); // Refresh every 30 seconds
+    // Function to fetch and display help request data
+    async function fetchHelpRequestData() {
+      const { data, error } = await supabase
+        .from('help_requests')
+        .select('*')
+        .order('created_at', { ascending: false }); // Sort by created_at
+
+      if (error) {
+        console.error('Error fetching help request data:', error);
+        showMessage('مدد جي درخواستن جي ڊيٽا حاصل ڪرڻ ۾ ناڪامي.', true);
+        return;
+      }
+
+      helpRequestTableBody.innerHTML = ''; // Clear previous data
+      if (data && data.length > 0) {
+        data.forEach(request => {
+          const row = document.createElement('tr');
+          row.className = 'border-b hover:bg-gray-50';
+          row.innerHTML = `
+            <td class="py-2 px-4">${request.name}</td>
+            <td class="py-2 px-4">${request.phone}</td>
+            <td class="py-2 px-4">${request.address}</td>
+            <td class="py-2 px-4">${request.details}</td>
+          `;
+          helpRequestTableBody.appendChild(row);
+        });
+        showMessage('مدد جي درخواستن جي ڊيٽا ڪاميابي سان حاصل ڪئي وئي.', false);
+      } else {
+        showMessage('مدد جي درخواستن جي ڪا به ڊيٽا نه ملي.', true);
+      }
     }
 
-    // Function to stop auto-refresh
-    function stopAutoRefresh() {
-        if (refreshInterval) {
-            clearInterval(refreshInterval);
-            refreshInterval = null;
-        }
+    // Function to fetch all data
+    function fetchAllData() {
+      fetchVolunteerData();
+      fetchHelpRequestData();
     }
 
     // Handle login form submission
     loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+      e.preventDefault();
+      loginStatus.textContent = 'لاگ ان ٿي رهيو آهي...';
+      
+      const email = e.target.username.value;
+      const password = e.target.password.value;
 
-        loginStatus.textContent = 'لاگ اِن ٿي رهيو آهي...';
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
 
-        const { error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password,
-        });
-
-        if (error) {
-            console.error('Login error:', error.message);
-            loginStatus.textContent = 'لاگ اِن ناڪام. مهرباني ڪري پنهنجو ايميل ۽ پاسورڊ چيڪ ڪريو.';
-            showMessage('لاگ اِن ناڪام. مهرباني ڪري پنهنجو ايميل ۽ پاسورڊ چيڪ ڪريو.');
-        } else {
-            loginStatus.textContent = '';
-            // Authentication state change listener will handle the UI update
-        }
+      if (error) {
+        console.error('Login error:', error);
+        loginStatus.textContent = 'لاگ ان ٿيڻ ۾ ناڪامي: ' + error.message;
+        loginStatus.style.color = 'red';
+      } else {
+        // Supabase authentication successful. The onAuthStateChange listener will handle the UI update.
+        loginStatus.textContent = 'لاگ ان ڪامياب! ريڊائريڪٽ ٿي رهيو آهي...';
+        loginStatus.style.color = 'green';
+      }
     });
 
     // Handle logout button click
     logoutBtn.addEventListener('click', async () => {
-        const { error } = await supabase.auth.signOut();
-        if (error) {
-            console.error('Logout error:', error.message);
-            showMessage('لاگ آئوٽ ناڪام.');
-        }
-    });
-
-    // Handle refresh button click
-    refreshBtn.addEventListener('click', () => {
-        fetchVolunteerData();
-        showMessage('ڊيٽا ريفريش ٿي وئي آهي.');
-    });
-
-    // Handle delete all data button click
-    deleteAllBtn.addEventListener('click', async () => {
-        if (confirm('ڇا توهان واقعي سڀ ڊيٽا ختم ڪرڻ چاهيو ٿا؟ هي عمل واپس نه ٿي سگهندو.')) {
-            const { error } = await supabase
-                .from('volunteers')
-                .delete()
-                .neq('name', 'null'); // Delete all rows where name is not 'null'
-
-            if (error) {
-                console.error('Delete error:', error.message);
-                showMessage('ڊيٽا ختم ڪرڻ ۾ ناڪام.');
-            } else {
-                showMessage('سڀ ڊيٽا ڪاميابي سان ختم ٿي وئي آهي.');
-                fetchVolunteerData(); // Refresh the table after deletion
-            }
-        }
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Logout error:', error);
+        showMessage('لاگ آئوٽ ٿيڻ ۾ ناڪامي.', true);
+      } else {
+        showMessage('لاگ آئوٽ ڪاميابي سان ٿي ويو.');
+      }
     });
 
     // Supabase auth state change listener
     supabase.auth.onAuthStateChange((event, session) => {
-        if (session) {
-            // User is logged in, show dashboard
-            loginSection.classList.add('hidden');
-            dashboardSection.classList.remove('hidden');
-            fetchVolunteerData();
-            startAutoRefresh();
-        } else {
-            // User is logged out, show login form
-            dashboardSection.classList.add('hidden');
-            loginSection.classList.remove('hidden');
-            loginForm.reset();
-            stopAutoRefresh();
-        }
+      if (session) {
+        // User is logged in, show dashboard
+        loginSection.classList.add('hidden');
+        dashboardSection.classList.remove('hidden');
+        fetchAllData();
+      } else {
+        // User is logged out, show login form
+        dashboardSection.classList.add('hidden');
+        loginSection.classList.remove('hidden');
+        loginForm.reset();
+      }
+    });
+
+    // Initial check for authentication state
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        // User is already logged in from a previous session
+        loginSection.classList.add('hidden');
+        dashboardSection.classList.remove('hidden');
+        fetchAllData();
+      }
     });
   </script>
 </body>
