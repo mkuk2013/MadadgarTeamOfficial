@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sd" dir="ltr">
+<html lang="sd" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,8 +19,6 @@
 
     body {
       font-family: 'MB Sindhi Web', serif;
-      
-      /* New Background Style: A single, large, subtle Ajrak-inspired diamond pattern in the center */
       background-color: var(--ajrak-off-white);
       background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTIwMCA4MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBvbHlnb24gcG9pbnRzPSI2MDAsMCAxMjAwLDQwMCA2MDAsODAwIDAsNDAwIiBmaWxsPSJyZ2IoMTM5LDAsMCwwLjA1KSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNjAwLDUwIDEwOTcsNDA2IDYwMCw3NTUgMTAzLDE2NSIgZmlsbD0icmdiKDEwLDQ2LDEwMSwwLjA2KSIvPgogPC9zdmc+');
       background-repeat: no-repeat;
@@ -32,7 +30,7 @@
 
     .ajrak-container {
       background-color: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Added subtle shadow for depth */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
     .text-ajrak-red { color: var(--ajrak-red); }
     .text-ajrak-blue { color: var(--ajrak-dark-blue); }
@@ -40,39 +38,34 @@
     .bg-ajrak-blue { background-color: var(--ajrak-dark-blue); }
     .border-ajrak { border: 2px solid var(--ajrak-red); }
 
-    /* Custom styles for right-to-left layout and typography */
-    .rtl-text-right { text-align: right; }
     .text-4xl { font-size: 2.25rem; }
     .text-5xl { font-size: 3rem; }
   </style>
 </head>
-<body class="rtl-text-right">
+<body>
   <!-- Main UI starts here -->
     <!-- Header & Navigation -->
     <header class="bg-white shadow-md sticky top-0 z-50">
-      <nav class="container mx-auto px-4 py-4 flex justify-between items-center flex-row">
-          <a href="#">
-<p>مددگار ٽيم</p>
-          <img src="logo.png" style="width:100px; height:100px;">
+      <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+          <a href="#" class="flex items-center space-x-2 space-x-reverse">
+            <img src="https://placehold.co/100x100/F0E6D8/8B0000?text=LOGO" alt="Madadgar Team Logo" class="w-20 h-20 rounded-full">
+            <p class="text-xl font-bold text-ajrak-red">مددگار ٽيم</p>
           </a>
-          <div class="hidden md:flex space-x-4">
+          <div class="hidden md:flex space-x-4" dir="ltr">
               <a href="#home" class="text-lg text-ajrak-blue hover:underline">Home</a>
               <a href="#about" class="text-lg text-ajrak-blue hover:underline">About Us</a>
-              <a href="#programs" class="text-lg text-ajrak-blue hover:underline">Programs</a>
               <a href="#contact" class="text-lg text-ajrak-blue hover:underline">Contact</a>
+              <a href="#programs" class="text-lg text-ajrak-blue hover:underline">Programs</a>
           </div>
           <button class="md:hidden text-ajrak-blue focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
           </button>
       </nav>
       <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg pb-4">
-          <a href="#home" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100">Home</a>
-          <a href="#about" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100">About Us</a>
-          <a href="#programs" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100">Programs</a>
-          <a href="#contact" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100">Contact</a>
-      </div>
-      <div class="bg-gray-100 text-sm text-gray-500 text-center py-1">
-         <p>صارف جي آئي ڊي: <span id="user-id-display" class="text-xs break-all"></span></p>
+          <a href="#home" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100 text-right">Home</a>
+          <a href="#about" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100 text-right">About Us</a>
+          <a href="#contact" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100 text-right">Contact</a>
+          <a href="#programs" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100 text-right">Programs</a>
       </div>
     </header>
 
@@ -179,7 +172,7 @@
             <p>123، مين روڊ، ڪراچي، سنڌ، پاڪستان</p>
             <p>فون: +92 312 3456789 | اي ميل: info@madadgarteam.org</p>
             <p class="mt-4">&copy; 2025 مددگار ٽيم. سڀ حق محفوظ آهن.</p>
-            <div class="flex justify-center space-x-4 mt-4 flex-row-reverse">
+            <div class="flex justify-center space-x-4 space-x-reverse mt-4">
                 <a href="#" class="hover:text-gray-300">Facebook</a>
                 <a href="#" class="hover:text-gray-300">Twitter</a>
                 <a href="#" class="hover:text-gray-300">Instagram</a>
@@ -188,82 +181,63 @@
     </footer>
   
   <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    // Supabase configuration
+    const SUPABASE_URL = 'https://flcvjrbsijwpfjvpvzzp.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsY3ZqcmJzaWp3cGZqdnB2enpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5OTQzNTIsImV4cCI6MjA3MjU3MDM1Mn0.RQ14jDfnIVlga5LnfNA-mC79qtvTcut0LNkCV5_Sk_M';
 
-    // Apne Supabase project ka URL aur anon key yahan daalen
-    const supabaseUrl = 'https://flcvjrbsijwpfjvpvzzp.supabase.co';
-    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsY3ZqcmJzaWp3cGZqdnB2enpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5OTQzNTIsImV4cCI6MjA3MjU3MDM1Mn0.RQ14jDfnIVlga5LnfNA-mC79qtvTcut0LNkCV5_Sk_M';
-    
-    let supabase;
-    let isSupabaseConfigured = false;
+    // --- The form submission logic ---
+    const volunteerForm = document.getElementById('volunteer-form');
     const statusDiv = document.getElementById('volunteer-status');
 
-    if (supabaseUrl === 'YOUR_SUPABASE_URL' || supabaseAnonKey === 'YOUR_SUPABASE_ANON_KEY') {
-        console.error("Supabase configuration missing. Please update supabaseUrl and supabaseAnonKey with your project details.");
-        statusDiv.textContent = 'معذرت، Supabase ترتيب نه ڏني وئي آهي. مهرباني ڪري ڪوڊ ۾ URL ۽ Key اپڊيٽ ڪريو.';
-    } else {
-        try {
-            supabase = createClient(supabaseUrl, supabaseAnonKey);
-            isSupabaseConfigured = true;
-        } catch (error) {
-            console.error("Supabase client creation failed:", error);
-            statusDiv.textContent = 'Supabase کلائنٹ ٺاهڻ ۾ غلطي. مهرباني ڪري ڪوڊ چيڪ ڪريو.';
-        }
-    }
-
-    // Generate a unique user ID for this session
-    let userId = sessionStorage.getItem('supabaseUserId');
-    if (!userId) {
-      userId = crypto.randomUUID();
-      sessionStorage.setItem('supabaseUserId', userId);
-    }
-    document.getElementById('user-id-display').textContent = userId;
-    
-    // --- Supabase Form Submission ---
-    const volunteerForm = document.getElementById('volunteer-form');
     if (volunteerForm) {
-        volunteerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+      volunteerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            if (!isSupabaseConfigured) {
-                // Supabase is not configured, prevent form submission
-                return;
-            }
-            
-            statusDiv.classList.remove('text-green-600', 'text-red-600');
-            statusDiv.classList.add('text-gray-500');
-            statusDiv.textContent = 'موڪليو پيو وڃي...';
+        statusDiv.classList.remove('text-green-600', 'text-red-600');
+        statusDiv.classList.add('text-gray-500');
+        statusDiv.textContent = 'موڪليو پيو وڃي...';
 
-            const formData = new FormData(volunteerForm);
-            const data = {
-                name: formData.get('name'),
-                phone: formData.get('phone'),
-                message: formData.get('message'),
-                timestamp: new Date().toISOString(),
-                userId: userId
-            };
+        const formData = new FormData(volunteerForm);
+        const volunteerData = {
+          name: formData.get('name'),
+          phone: formData.get('phone'),
+          message: formData.get('message'),
+        };
 
-            try {
-                const { error } = await supabase.from('volunteers').insert([data]);
+        try {
+          const response = await fetch(`${SUPABASE_URL}/rest/v1/volunteers`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': SUPABASE_KEY,
+              'Authorization': `Bearer ${SUPABASE_KEY}`
+            },
+            body: JSON.stringify(volunteerData)
+          });
 
-                if (error) throw error;
-                
-                statusDiv.classList.remove('text-gray-500');
-                statusDiv.classList.add('text-green-600');
-                statusDiv.textContent = 'مهرباني! توهان جي معلومات موڪلي وئي آهي.';
-                volunteerForm.reset();
-            } catch (error) {
-                console.error("Error adding document:", error);
-                statusDiv.classList.remove('text-gray-500');
-                statusDiv.classList.add('text-red-600');
-                statusDiv.textContent = 'معذرت، ڪجهه غلط ٿي ويو. مهرباني ڪري ٻيهر ڪوشش ڪريو.';
-            }
-        });
+          if (response.ok) {
+            statusDiv.classList.remove('text-gray-500');
+            statusDiv.classList.add('text-green-600');
+            statusDiv.textContent = 'مهرباني! توهان جي معلومات موڪلي وئي آهي.';
+            volunteerForm.reset();
+          } else {
+            const errorData = await response.json();
+            console.error('Supabase error:', errorData);
+            statusDiv.classList.remove('text-gray-500');
+            statusDiv.classList.add('text-red-600');
+            statusDiv.textContent = 'معذرت، ڪجهه غلط ٿي ويو. مهرباني ڪري ٻيهر ڪوشش ڪريو.';
+          }
+        } catch (error) {
+          console.error('Network error:', error);
+          statusDiv.classList.remove('text-gray-500');
+          statusDiv.classList.add('text-red-600');
+          statusDiv.textContent = 'معذرت، ڪجهه غلط ٿي ويو. مهرباني ڪري ٻيهر ڪوشش ڪريو.';
+        }
+      });
     }
 
-    // The counter logic
+    // --- The counter logic (unchanged) ---
     document.addEventListener('DOMContentLoaded', () => {
-        // Simple counter animation
         function animateValue(obj, start, end, duration) {
             let startTimestamp = null;
             const step = (timestamp) => {
@@ -295,17 +269,16 @@
                 statsContainer.appendChild(statDiv);
             });
 
-            // Trigger animation on element visibility
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         const target = entry.target;
                         const count = stats.find(stat => stat.title === target.nextElementSibling.textContent).count;
                         animateValue(target, 0, count, 2000);
-                        observer.unobserve(entry.target); // Stop observing after animation
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
+            }, { threshold: 0.5 });
 
             document.querySelectorAll('.count-up').forEach(counter => {
                 observer.observe(counter);
@@ -315,8 +288,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
