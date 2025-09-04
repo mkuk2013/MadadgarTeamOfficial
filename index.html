@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="sd" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مددگار ٽيم | Madadgar Team</title>
+
+  <!-- Sindhi Font: MB Sindhi Web -->
+  <link href="https://db.onlinewebfonts.com/c/555dfe40341db3b52f4b7bafc3bb2432?family=MB+Sindhi+Web" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --ajrak-red: #8B0000;
+      --ajrak-dark-blue: #0A2E65;
+      --ajrak-off-white: #F0E6D8;
+    }
+
+    body {
+      font-family: 'MB Sindhi Web', serif;
+      
+      /* New Background Style: A single, large, subtle Ajrak-inspired diamond pattern in the center */
+      background-color: var(--ajrak-off-white);
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTIwMCA4MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPHBvbHlnb24gcG9pbnRzPSI2MDAsMCAxMjAwLDQwMCA2MDAsODAwIDAsNDAwIiBmaWxsPSJyZ2IoMTM5LDAsMCwwLjA1KSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNjAwLDUwIDEwOTcsNDA2IDYwMCw3NTUgMTAzLDE2NSIgZmlsbD0icmdiKDEwLDQ2LDEwMSwwLjA2KSIvPgogPC9zdmc+');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 80% auto;
+      color: #161616;
+      line-height: 1.8;
+    }
+
+    .ajrak-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Added subtle shadow for depth */
+    }
+    .text-ajrak-red { color: var(--ajrak-red); }
+    .text-ajrak-blue { color: var(--ajrak-dark-blue); }
+    .bg-ajrak-red { background-color: var(--ajrak-red); }
+    .bg-ajrak-blue { background-color: var(--ajrak-dark-blue); }
+    .border-ajrak { border: 2px solid var(--ajrak-red); }
+
+    /* Custom styles for right-to-left layout and typography */
+    .rtl-text-right { text-align: right; }
+    .text-4xl { font-size: 2.25rem; }
+    .text-5xl { font-size: 3rem; }
+  </style>
+</head>
+<body class="rtl-text-right">
+  <!-- Main UI starts here -->
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <nav class="container mx-auto px-4 py-4 flex justify-between items-center flex-row">
+          <a href="#">
+              <img src="data:image/jpeg;base64,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" alt="Madadgar Team Logo" class="h-12 w-auto">
+          </a>
+          <div class="hidden md:flex space-x-4">
+              <a href="#home" class="text-lg text-ajrak-blue hover:underline">Home</a>
+              <a href="#about" class="text-lg text-ajrak-blue hover:underline">About Us</a>
+              <a href="#programs" class="text-lg text-ajrak-blue hover:underline">Programs</a>
+              <a href="#contact" class="text-lg text-ajrak-blue hover:underline">Contact</a>
+          </div>
+          <button class="md:hidden text-ajrak-blue focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+          </button>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg pb-4">
+          <a href="#home" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100">Home</a>
+          <a href="#about" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100">About Us</a>
+          <a href="#programs" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100">Programs</a>
+          <a href="#contact" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100">Contact</a>
+      </div>
+      <div class="bg-gray-100 text-sm text-gray-500 text-center py-1">
+         <p>صارف جي آئي ڊي: <span id="user-id-display" class="text-xs break-all"></span></p>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-24 text-center bg-cover bg-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl md:text-6xl font-bold text-ajrak-blue leading-tight mb-4">مددگار ٽيم</h1>
+            <p class="mt-4 text-xl text-ajrak-red">هڪ مدد جو هٿ، هڪ بهتر مستقبل</p>
+            <a href="#contact" class="mt-8 inline-block bg-ajrak-red text-white font-bold py-3 px-8 rounded-full hover:bg-red-900 transition-colors">
+                هاڻي عطيو ڏيو
+            </a>
+            <div id="stats-container" class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center max-w-4xl mx-auto">
+                <!-- Stats will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="container mx-auto px-4 py-16 ajrak-container rounded-lg shadow-xl">
+        <h2 class="text-3xl font-bold text-ajrak-blue text-center mb-8">اسان جي باري ۾</h2>
+        <div class="text-center max-w-3xl mx-auto">
+            <p class="text-xl leading-relaxed">
+                مددگار ٽيم هڪ غير منافع بخش خيراتي تنظيم آهي جيڪا سنڌ جي غريب ۽ پسمانده طبقن جي مدد ڪرڻ لاءِ وقف آهي. اسان جو مشن انهن جي زندگين ۾ مثبت تبديلي آڻڻ آهي، انهن کي پائيدار حل فراهم ڪندي. اسان جو يقين آهي ته هڪ مددگار هٿ انهن جي زندگين ۾ وڏي تبديلي آڻي سگهي ٿو ۽ هڪ مضبوط، وڌيڪ رحم دل سماج ٺاهي سگهي ٿو.
+            </p>
+        </div>
+    </section>
+
+    <!-- Our Programs Section -->
+    <section id="programs" class="container mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold text-ajrak-blue text-center mb-8">اسان ڇا ٿا ڪريون</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div class="bg-white p-6 rounded-lg shadow-lg border-ajrak hover:scale-105 transition-transform">
+                <h3 class="text-2xl font-bold mb-2 text-ajrak-red">کاڌي جي ورڇ</h3>
+                <p class="text-gray-600">اسان خوراڪ جي مهم هلائيندا آهيون ته جيئن ڪو به بکيو نه سمهي. اسان ضرورت مند خاندانن کي کاڌي جا پيڪيج فراهم ڪندا آهيون. </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg border-ajrak hover:scale-105 transition-transform">
+                <h3 class="text-2xl font-bold mb-2 text-ajrak-red">صحت ۽ طبي امداد</h3>
+                <p class="text-gray-600">اسان غريب ماڻهن کي صحت جي سنڀال ۽ طبي امداد فراهم ڪندا آهيون. مفت طبي ڪيمپون منعقد ڪيون وينديون آهن. </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg border-ajrak hover:scale-105 transition-transform">
+                <h3 class="text-2xl font-bold mb-2 text-ajrak-red">تعليمي مدد</h3>
+                <p class="text-gray-600">اسان غريب ٻارن جي تعليم ۾ مدد ڪندا آهيون، اسڪول جو سامان، اسڪالرشپ ۽ مفت ٽيوشن ڪلاس فراهم ڪندا آهيون. </p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg border-ajrak hover:scale-105 transition-transform">
+                <h3 class="text-2xl font-bold mb-2 text-ajrak-red">صاف پاڻي ۽ صفائي</h3>
+                <p class="text-gray-600">اسان صاف پاڻي جي دستيابي ۽ صفائي جي منصوبن تي ڪم ڪندا آهيون ته جيئن صحت مند زندگي گذاري سگهجي. </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer & Contact Section -->
+    <section id="contact" class="container mx-auto px-4 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        <!-- Volunteer Form -->
+        <div class="ajrak-container rounded-lg shadow-xl p-8">
+          <h2 class="text-3xl font-bold text-ajrak-blue text-center mb-6">شريڪ ٿيو</h2>
+          <p class="text-center mb-6 text-lg">توهان جو تعاون هڪ فرق آڻي سگهي ٿو. رضاڪار طور شامل ٿيو يا هاڻي عطيو ڏيو.</p>
+          <form id="volunteer-form">
+            <div class="mb-4">
+              <label for="volunteer-name" class="block text-gray-700 font-bold mb-2">پورو نالو</label>
+              <input type="text" id="volunteer-name" name="name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" required>
+            </div>
+            <div class="mb-4">
+              <label for="volunteer-phone" class="block text-gray-700 font-bold mb-2">موبائل نمبر</label>
+              <input type="tel" id="volunteer-phone" name="phone" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" required>
+            </div>
+            <div class="mb-6">
+              <label for="volunteer-message" class="block text-gray-700 font-bold mb-2">توهان ڪيئن مدد ڪري سگهو ٿا؟</label>
+              <textarea id="volunteer-message" name="message" rows="4" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" placeholder="مثال: کاڌو ورهائڻ، ڊاڪٽر، ٽيچر، وغيره"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-ajrak-red text-white font-bold py-3 rounded-full hover:bg-red-900 transition-colors">
+              رضاڪاراڻو شامل ٿيو
+            </button>
+            <div id="volunteer-status" class="mt-4 text-center"></div>
+          </form>
+        </div>
+        
+        <!-- Contact Info & Donations -->
+        <div class="ajrak-container rounded-lg shadow-xl p-8">
+          <h2 class="text-3xl font-bold text-ajrak-blue text-center mb-6">رابطو ڪريو ۽ عطيا ڏيو</h2>
+          <div class="text-center mb-6 text-lg">
+            <p>اسان سان رابطو ڪرڻ لاءِ هيٺ ڏنل تفصيل استعمال ڪريو.</p>
+          </div>
+          <div class="bg-gray-100 p-6 rounded-lg shadow-inner">
+            <p class="text-xl font-bold text-ajrak-blue">اڪائونٽ تفصيل</p>
+            <p class="mt-2 text-sm text-gray-700">بينڪ: <strong>ABC Bank</strong></p>
+            <p class="text-sm text-gray-700">اڪائونٽ نمبر: <strong>123-456-7890</strong></p>
+            <p class="text-sm text-gray-700">اڪائونٽ جو نالو: <strong>Madadgar Team</strong></p>
+          </div>
+          <div class="mt-6 flex flex-col items-center">
+            <p class="text-lg font-bold">يا سڌو اسان سان رابطو ڪريو:</p>
+            <p class="text-ajrak-blue font-bold text-lg mt-2"><a href="mailto:info@madadgarteam.org">info@madadgarteam.org</a></p>
+            <p class="text-ajrak-blue font-bold text-lg mt-1">+92 312 3456789</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-ajrak-blue text-white py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg font-bold mb-2">رابطي جي تفصيل</p>
+            <p>123، مين روڊ، ڪراچي، سنڌ، پاڪستان</p>
+            <p>فون: +92 312 3456789 | اي ميل: info@madadgarteam.org</p>
+            <p class="mt-4">&copy; 2025 مددگار ٽيم. سڀ حق محفوظ آهن.</p>
+            <div class="flex justify-center space-x-4 mt-4 flex-row-reverse">
+                <a href="#" class="hover:text-gray-300">Facebook</a>
+                <a href="#" class="hover:text-gray-300">Twitter</a>
+                <a href="#" class="hover:text-gray-300">Instagram</a>
+            </div>
+        </div>
+    </footer>
+  
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    // Apne Supabase project ka URL aur anon key yahan daalen
+    const supabaseUrl = 'https://flcvjrbsijwpfjvpvzzp.supabase.co';
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsY3ZqcmJzaWp3cGZqdnB2enpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5OTQzNTIsImV4cCI6MjA3MjU3MDM1Mn0.RQ14jDfnIVlga5LnfNA-mC79qtvTcut0LNkCV5_Sk_M';
+    
+    let supabase;
+    let isSupabaseConfigured = false;
+    const statusDiv = document.getElementById('volunteer-status');
+
+    if (supabaseUrl === 'YOUR_SUPABASE_URL' || supabaseAnonKey === 'YOUR_SUPABASE_ANON_KEY') {
+        console.error("Supabase configuration missing. Please update supabaseUrl and supabaseAnonKey with your project details.");
+        statusDiv.textContent = 'معذرت، Supabase ترتيب نه ڏني وئي آهي. مهرباني ڪري ڪوڊ ۾ URL ۽ Key اپڊيٽ ڪريو.';
+    } else {
+        try {
+            supabase = createClient(supabaseUrl, supabaseAnonKey);
+            isSupabaseConfigured = true;
+        } catch (error) {
+            console.error("Supabase client creation failed:", error);
+            statusDiv.textContent = 'Supabase کلائنٹ ٺاهڻ ۾ غلطي. مهرباني ڪري ڪوڊ چيڪ ڪريو.';
+        }
+    }
+
+    // Generate a unique user ID for this session
+    let userId = sessionStorage.getItem('supabaseUserId');
+    if (!userId) {
+      userId = crypto.randomUUID();
+      sessionStorage.setItem('supabaseUserId', userId);
+    }
+    document.getElementById('user-id-display').textContent = userId;
+    
+    // --- Supabase Form Submission ---
+    const volunteerForm = document.getElementById('volunteer-form');
+    if (volunteerForm) {
+        volunteerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            if (!isSupabaseConfigured) {
+                // Supabase is not configured, prevent form submission
+                return;
+            }
+            
+            statusDiv.classList.remove('text-green-600', 'text-red-600');
+            statusDiv.classList.add('text-gray-500');
+            statusDiv.textContent = 'موڪليو پيو وڃي...';
+
+            const formData = new FormData(volunteerForm);
+            const data = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                message: formData.get('message'),
+                timestamp: new Date().toISOString(),
+                userId: userId
+            };
+
+            try {
+                const { error } = await supabase.from('volunteers').insert([data]);
+
+                if (error) throw error;
+                
+                statusDiv.classList.remove('text-gray-500');
+                statusDiv.classList.add('text-green-600');
+                statusDiv.textContent = 'مهرباني! توهان جي معلومات موڪلي وئي آهي.';
+                volunteerForm.reset();
+            } catch (error) {
+                console.error("Error adding document:", error);
+                statusDiv.classList.remove('text-gray-500');
+                statusDiv.classList.add('text-red-600');
+                statusDiv.textContent = 'معذرت، ڪجهه غلط ٿي ويو. مهرباني ڪري ٻيهر ڪوشش ڪريو.';
+            }
+        });
+    }
+
+    // The counter logic
+    document.addEventListener('DOMContentLoaded', () => {
+        // Simple counter animation
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.textContent = Math.floor(progress * (end - start) + start).toLocaleString('sd-PK');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const statsContainer = document.getElementById('stats-container');
+        if (statsContainer) {
+            const stats = [
+                { title: 'خوراڪ جا پيڪيج ورهايا ويا', count: 5000 },
+                { title: 'تعليم ۾ مدد ڪئي وئي', count: 1200 },
+                { title: 'مفت طبي ڪيمپون', count: 20 }
+            ];
+
+            stats.forEach(stat => {
+                const statDiv = document.createElement('div');
+                statDiv.className = 'bg-white p-6 rounded-lg shadow-lg border-ajrak hover:scale-105 transition-transform';
+                statDiv.innerHTML = `
+                    <p class="text-4xl font-bold text-ajrak-red count-up"></p>
+                    <p class="text-gray-600">${stat.title}</p>
+                `;
+                statsContainer.appendChild(statDiv);
+            });
+
+            // Trigger animation on element visibility
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = entry.target;
+                        const count = stats.find(stat => stat.title === target.nextElementSibling.textContent).count;
+                        animateValue(target, 0, count, 2000);
+                        observer.unobserve(entry.target); // Stop observing after animation
+                    }
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
+
+            document.querySelectorAll('.count-up').forEach(counter => {
+                observer.observe(counter);
+            });
+        }
+    });
+  </script>
+</body>
+</html>
