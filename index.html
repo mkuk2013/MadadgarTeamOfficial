@@ -47,25 +47,28 @@
     <!-- Header & Navigation -->
     <header class="bg-white shadow-md sticky top-0 z-50">
       <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="index.html" class="flex items-center space-x-2 space-x-reverse">
-            <img src="logo.png" alt="Madadgar Team Logo" class="w-20 h-20 rounded-full">
+          <a href="#" class="flex items-center space-x-2 space-x-reverse">
+            <!-- Updated logo source to use the uploaded file -->
+            <img src="logo.jpg" alt="Madadgar Team Logo" class="w-20 h-20 rounded-full">
             <p class="text-xl font-bold text-ajrak-red">مددگار ٽيم</p>
           </a>
           <div class="hidden md:flex space-x-4" dir="ltr">
               <a href="#home" class="text-lg text-ajrak-blue hover:underline">Home</a>
               <a href="#about" class="text-lg text-ajrak-blue hover:underline">About Us</a>
-              <a href="#contact" class="text-lg text-ajrak-blue hover:underline">Contact</a>
               <a href="#programs" class="text-lg text-ajrak-blue hover:underline">Programs</a>
+              <a href="#help-request" class="text-lg text-ajrak-blue hover:underline">Help Request</a>
+              <a href="#contact" class="text-lg text-ajrak-blue hover:underline">Contact</a>
           </div>
           <button class="md:hidden text-ajrak-blue focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
           </button>
       </nav>
-      <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg pb-4">
+      <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg pb-4" dir="rtl">
           <a href="#home" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100 text-right">Home</a>
           <a href="#about" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100 text-right">About Us</a>
-          <a href="#contact" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100 text-right">Contact</a>
           <a href="#programs" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100 text-right">Programs</a>
+          <a href="#help-request" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100 text-right">Help Request</a>
+          <a href="#contact" class="block py-2 px-4 text-ajrak-blue hover:bg-gray-100 text-right">Contact</a>
       </div>
     </header>
 
@@ -113,6 +116,36 @@
                 <h3 class="text-2xl font-bold mb-2 text-ajrak-red">صاف پاڻي ۽ صفائي</h3>
                 <p class="text-gray-600">اسان صاف پاڻي جي دستيابي ۽ صفائي جي منصوبن تي ڪم ڪندا آهيون ته جيئن صحت مند زندگي گذاري سگهجي. </p>
             </div>
+        </div>
+    </section>
+
+    <!-- Help Request Section -->
+    <section id="help-request" class="container mx-auto px-4 py-16">
+        <div class="ajrak-container rounded-lg shadow-xl p-8 max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold text-ajrak-blue text-center mb-6">مدد جي درخواست</h2>
+            <p class="text-center mb-6 text-lg">جيڪڏهن توهان کي مدد جي ضرورت آهي، مهرباني ڪري هيٺ ڏنل فارم ڀريو ۽ اسان سان رابطو ڪيو.</p>
+            <form id="help-request-form">
+                <div class="mb-4">
+                    <label for="request-name" class="block text-gray-700 font-bold mb-2">پورو نالو</label>
+                    <input type="text" id="request-name" name="name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" required>
+                </div>
+                <div class="mb-4">
+                    <label for="request-phone" class="block text-gray-700 font-bold mb-2">موبائل نمبر</label>
+                    <input type="tel" id="request-phone" name="phone" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" required>
+                </div>
+                <div class="mb-4">
+                    <label for="request-address" class="block text-gray-700 font-bold mb-2">پتو</label>
+                    <textarea id="request-address" name="address" rows="2" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" required></textarea>
+                </div>
+                <div class="mb-6">
+                    <label for="request-details" class="block text-gray-700 font-bold mb-2">مدد جي تفصيل</label>
+                    <textarea id="request-details" name="details" rows="4" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" placeholder="مثال: کاڌي جي ضرورت، طبي امداد، تعليمي مدد، وغيره"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-ajrak-blue text-white font-bold py-3 rounded-full hover:bg-blue-900 transition-colors">
+                    مدد جي درخواست موڪليو
+                </button>
+                <div id="request-status" class="mt-4 text-center"></div>
+            </form>
         </div>
     </section>
 
@@ -185,17 +218,17 @@
     const SUPABASE_URL = 'https://flcvjrbsijwpfjvpvzzp.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsY3ZqcmJzaWp3cGZqdnB2enpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5OTQzNTIsImV4cCI6MjA3MjU3MDM1Mn0.RQ14jDfnIVlga5LnfNA-mC79qtvTcut0LNkCV5_Sk_M';
 
-    // --- The form submission logic ---
+    // --- The volunteer form submission logic ---
     const volunteerForm = document.getElementById('volunteer-form');
-    const statusDiv = document.getElementById('volunteer-status');
+    const volunteerStatusDiv = document.getElementById('volunteer-status');
 
     if (volunteerForm) {
       volunteerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        statusDiv.classList.remove('text-green-600', 'text-red-600');
-        statusDiv.classList.add('text-gray-500');
-        statusDiv.textContent = 'موڪليو پيو وڃي...';
+        volunteerStatusDiv.classList.remove('text-green-600', 'text-red-600');
+        volunteerStatusDiv.classList.add('text-gray-500');
+        volunteerStatusDiv.textContent = 'موڪليو پيو وڃي...';
 
         const formData = new FormData(volunteerForm);
         const volunteerData = {
@@ -216,24 +249,77 @@
           });
 
           if (response.ok) {
-            statusDiv.classList.remove('text-gray-500');
-            statusDiv.classList.add('text-green-600');
-            statusDiv.textContent = 'مهرباني! توهان جي معلومات موڪلي وئي آهي.';
+            volunteerStatusDiv.classList.remove('text-gray-500');
+            volunteerStatusDiv.classList.add('text-green-600');
+            volunteerStatusDiv.textContent = 'مهرباني! توهان جي معلومات موڪلي وئي آهي.';
             volunteerForm.reset();
           } else {
             const errorData = await response.json();
             console.error('Supabase error:', errorData);
-            statusDiv.classList.remove('text-gray-500');
-            statusDiv.classList.add('text-red-600');
-            statusDiv.textContent = 'معذرت، ڪجهه غلط ٿي ويو. مهرباني ڪري ٻيهر ڪوشش ڪريو.';
+            volunteerStatusDiv.classList.remove('text-gray-500');
+            volunteerStatusDiv.classList.add('text-red-600');
+            volunteerStatusDiv.textContent = 'معذرت، ڪجهه غلط ٿي ويو. مهرباني ڪري ٻيهر ڪوشش ڪريو.';
           }
         } catch (error) {
           console.error('Network error:', error);
-          statusDiv.classList.remove('text-gray-500');
-          statusDiv.classList.add('text-red-600');
-          statusDiv.textContent = 'معذرت، ڪجهه غلط ٿي ويو. مهرباني ڪري ٻيهر ڪوشش ڪريو.';
+          volunteerStatusDiv.classList.remove('text-gray-500');
+          volunteerStatusDiv.classList.add('text-red-600');
+          volunteerStatusDiv.textContent = 'معذرت، ڪجهه غلط ٿي ويو. مهرباني ڪري ٻيهر ڪوشش ڪريو.';
         }
       });
+    }
+
+    // --- The help request form submission logic ---
+    const requestForm = document.getElementById('help-request-form');
+    const requestStatusDiv = document.getElementById('request-status');
+
+    if (requestForm) {
+        requestForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            requestStatusDiv.classList.remove('text-green-600', 'text-red-600');
+            requestStatusDiv.classList.add('text-gray-500');
+            requestStatusDiv.textContent = 'موڪليو پيو وڃي...';
+
+            const formData = new FormData(requestForm);
+            const requestData = {
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                address: formData.get('address'),
+                details: formData.get('details'),
+            };
+
+            try {
+                // Using the new `help_requests` table
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/help_requests`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_KEY,
+                        'Authorization': `Bearer ${SUPABASE_KEY}`
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                if (response.ok) {
+                    requestStatusDiv.classList.remove('text-gray-500');
+                    requestStatusDiv.classList.add('text-green-600');
+                    requestStatusDiv.textContent = 'مهرباني! توهان جي درخواست موڪلي وئي آهي. اسان جلد توهان سان رابطو ڪنداسين.';
+                    requestForm.reset();
+                } else {
+                    const errorData = await response.json();
+                    console.error('Supabase error:', errorData);
+                    requestStatusDiv.classList.remove('text-gray-500');
+                    requestStatusDiv.classList.add('text-red-600');
+                    requestStatusDiv.textContent = 'معذرت، ڪجهه غلط ٿي ويو. مهرباني ڪري ٻيهر ڪوشش ڪريو.';
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                requestStatusDiv.classList.remove('text-gray-500');
+                requestStatusDiv.classList.add('text-red-600');
+                requestStatusDiv.textContent = 'معذرت، ڪجهه غلط ٿي ويو. مهرباني ڪري ٻيهر ڪوشش ڪريو.';
+            }
+        });
     }
 
     // --- The counter logic (unchanged) ---
