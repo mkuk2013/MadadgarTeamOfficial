@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="sd" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مددگار ٽيم | ايڊمن پينل</title>
+  
+  <link href="https://db.onlinewebfonts.com/c/555dfe40341db3b52f4b7bafc3bb2432?family=MB+Sindhi+Web" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --ajrak-red: #8B0000;
+      --ajrak-dark-blue: #0A2E65;
+      --ajrak-off-white: #F0E6D8;
+    }
+
+    body {
+      font-family: 'MB Sindhi Web', serif;
+      background-color: var(--ajrak-off-white);
+      color: #161616;
+      line-height: 1.8;
+    }
+    .ajrak-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .text-ajrak-red { color: var(--ajrak-red); }
+    .text-ajrak-blue { color: var(--ajrak-dark-blue); }
+    .bg-ajrak-red { background-color: var(--ajrak-red); }
+    .bg-ajrak-blue { background-color: var(--ajrak-dark-blue); }
+    
+    .table-container {
+        overflow-x: auto;
+    }
+
+    @media (max-width: 768px) {
+        .data-table th, .data-table td {
+            font-size: 0.75rem; /* Smaller font on mobile */
+            padding: 0.5rem;
+        }
+    }
+  </style>
+</head>
+<body class="p-4 md:p-8">
+
+  <div id="message-box" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full border-2 border-ajrak-red">
+          <h3 class="text-xl font-bold text-ajrak-red mb-4 text-center">اطلاع</h3>
+          <p id="message-text" class="text-gray-700 text-center"></p>
+          <div class="mt-6 flex justify-center">
+              <button onclick="document.getElementById('message-box').classList.add('hidden')" class="bg-ajrak-red text-white py-2 px-6 rounded-full hover:bg-red-900 transition-colors">ٺيڪ آهي</button>
+          </div>
+      </div>
+  </div>
+
+  <div id="login-section" class="flex flex-col items-center justify-center min-h-screen">
+    <div class="ajrak-container p-8 md:p-12 rounded-lg w-full max-w-md">
+      <h1 class="text-3xl md:text-4xl font-bold text-ajrak-blue text-center mb-6">ايڊمن پينل لاگ اِن</h1>
+      <p class="text-center text-gray-700 mb-8">اڳتي وڌڻ لاءِ پنهنجي ايميل ۽ پاسورڊ داخل ڪريو.</p>
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label for="email" class="block text-gray-700 font-bold mb-2">ايميل</label>
+          <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" required>
+        </div>
+        <div>
+          <label for="password" class="block text-gray-700 font-bold mb-2">پاسورڊ</label>
+          <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-ajrak-red" required>
+        </div>
+        <button type="submit" class="w-full bg-ajrak-red text-white font-bold py-3 rounded-full hover:bg-red-900 transition-colors">
+          لاگ اِن ڪريو
+        </button>
+      </form>
+      <p id="login-status" class="mt-4 text-center text-sm text-red-600"></p>
+    </div>
+  </div>
+
+  <div id="dashboard-section" class="hidden">
+    <header class="flex flex-col md:flex-row justify-between items-center py-4 md:py-8 px-4 bg-white shadow-md rounded-lg mb-6">
+      <h1 class="text-3xl md:text-4xl font-bold text-ajrak-blue">رضاڪارن جو ڊيٽا</h1>
+      <div class="flex flex-col md:flex-row gap-4 mt-4 md:mt-0">
+          <button id="refresh-btn" class="bg-ajrak-blue text-white py-2 px-6 rounded-full hover:bg-blue-900 transition-colors">
+            ڊيٽا ريفريش ڪريو
+          </button>
+          <button id="delete-all-btn" class="bg-red-600 text-white py-2 px-6 rounded-full hover:bg-red-700 transition-colors">
+            سڀ ڊيٽا ختم ڪريو
+          </button>
+          <button id="logout-btn" class="bg-ajrak-blue text-white py-2 px-6 rounded-full hover:bg-blue-900 transition-colors">
+            لاگ آئوٽ
+          </button>
+      </div>
+    </header>
+    
+    <div class="ajrak-container p-6 rounded-lg table-container">
+        <table class="w-full data-table text-right border-collapse">
+            <thead class="bg-ajrak-blue text-white">
+                <tr class="rtl:text-right">
+                    <th class="py-3 px-4 rounded-tr-lg border-b border-gray-200">نالو</th>
+                    <th class="py-3 px-4 border-b border-gray-200">موبائل نمبر</th>
+                    <th class="py-3 px-4 rounded-tl-lg border-b border-gray-200">پيغام</th>
+                </tr>
+            </thead>
+            <tbody id="data-table-body" class="bg-white">
+                <tr>
+                    <td colspan="3" class="text-center py-4 text-gray-500">ڊيٽا لوڊ ٿي رهيو آهي...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+
+  <script type="module">
+    // Supabase imports
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.43.4/+esm';
+  
+    // Supabase URL and Anon Key provided from the previous file
+    const supabaseUrl = 'https://flcvjrbsijwpfjvpvzzp.supabase.co';
+    const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsY3ZqcmJzaWp3cGZqdnB2enpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5OTQzNTIsImV4cCI6MjA3MjU3MDM1Mn0.RQ14jDfnIVlga5LnfNA-mC79qtvTcut0LNkCV5_Sk_M';
+  
+    // Initialize Supabase client
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+    // Get DOM elements
+    const loginSection = document.getElementById('login-section');
+    const dashboardSection = document.getElementById('dashboard-section');
+    const loginForm = document.getElementById('login-form');
+    const loginStatus = document.getElementById('login-status');
+    const logoutBtn = document.getElementById('logout-btn');
+    const refreshBtn = document.getElementById('refresh-btn');
+    const deleteAllBtn = document.getElementById('delete-all-btn');
+    const dataTableBody = document.getElementById('data-table-body');
+    const messageBox = document.getElementById('message-box');
+    const messageText = document.getElementById('message-text');
+
+    let refreshInterval;
+    
+    // Function to show custom message
+    function showMessage(text) {
+        messageText.textContent = text;
+        messageBox.classList.remove('hidden');
+    }
+
+    // Function to fetch and display volunteer data
+    async function fetchVolunteerData() {
+        // Show loading state
+        dataTableBody.innerHTML = '<tr><td colspan="3" class="text-center py-4 text-gray-500">ڊيٽا لوڊ ٿي رهيو آهي...</td></tr>';
+        
+        const { data, error } = await supabase
+            .from('volunteers')
+            .select('*')
+            .order('timestamp', { ascending: false });
+
+        if (error) {
+            console.error('Error fetching data:', error);
+            showMessage('ڊيٽا لوڊ ڪرڻ ۾ ناڪام.');
+            dataTableBody.innerHTML = '<tr><td colspan="3" class="text-center py-4 text-red-600">ڊيٽا لوڊ نه ٿي سگهيو.</td></tr>';
+            return;
+        }
+
+        if (data.length === 0) {
+            dataTableBody.innerHTML = '<tr><td colspan="3" class="text-center py-4 text-gray-500">ڪو به ڊيٽا نه مليو.</td></tr>';
+            return;
+        }
+
+        // Clear existing table data
+        dataTableBody.innerHTML = '';
+        
+        // Populate the table with fetched data
+        data.forEach(volunteer => {
+            const row = document.createElement('tr');
+            row.className = 'border-b last:border-b-0 hover:bg-gray-50 transition-colors';
+            row.innerHTML = `
+                <td class="py-3 px-4">${volunteer.name}</td>
+                <td class="py-3 px-4">${volunteer.phone}</td>
+                <td class="py-3 px-4">${volunteer.message}</td>
+            `;
+            dataTableBody.appendChild(row);
+        });
+    }
+
+    // Function to start auto-refresh
+    function startAutoRefresh() {
+        if (refreshInterval) {
+            clearInterval(refreshInterval);
+        }
+        refreshInterval = setInterval(fetchVolunteerData, 30000); // Refresh every 30 seconds
+    }
+
+    // Function to stop auto-refresh
+    function stopAutoRefresh() {
+        if (refreshInterval) {
+            clearInterval(refreshInterval);
+            refreshInterval = null;
+        }
+    }
+
+    // Handle login form submission
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        loginStatus.textContent = 'لاگ اِن ٿي رهيو آهي...';
+
+        const { error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
+
+        if (error) {
+            console.error('Login error:', error.message);
+            loginStatus.textContent = 'لاگ اِن ناڪام. مهرباني ڪري پنهنجو ايميل ۽ پاسورڊ چيڪ ڪريو.';
+            showMessage('لاگ اِن ناڪام. مهرباني ڪري پنهنجو ايميل ۽ پاسورڊ چيڪ ڪريو.');
+        } else {
+            loginStatus.textContent = '';
+            // Authentication state change listener will handle the UI update
+        }
+    });
+
+    // Handle logout button click
+    logoutBtn.addEventListener('click', async () => {
+        const { error } = await supabase.auth.signOut();
+        if (error) {
+            console.error('Logout error:', error.message);
+            showMessage('لاگ آئوٽ ناڪام.');
+        }
+    });
+
+    // Handle refresh button click
+    refreshBtn.addEventListener('click', () => {
+        fetchVolunteerData();
+        showMessage('ڊيٽا ريفريش ٿي وئي آهي.');
+    });
+
+    // Handle delete all data button click
+    deleteAllBtn.addEventListener('click', async () => {
+        if (confirm('ڇا توهان واقعي سڀ ڊيٽا ختم ڪرڻ چاهيو ٿا؟ هي عمل واپس نه ٿي سگهندو.')) {
+            const { error } = await supabase
+                .from('volunteers')
+                .delete()
+                .neq('name', 'null'); // Delete all rows where name is not 'null'
+
+            if (error) {
+                console.error('Delete error:', error.message);
+                showMessage('ڊيٽا ختم ڪرڻ ۾ ناڪام.');
+            } else {
+                showMessage('سڀ ڊيٽا ڪاميابي سان ختم ٿي وئي آهي.');
+                fetchVolunteerData(); // Refresh the table after deletion
+            }
+        }
+    });
+
+    // Supabase auth state change listener
+    supabase.auth.onAuthStateChange((event, session) => {
+        if (session) {
+            // User is logged in, show dashboard
+            loginSection.classList.add('hidden');
+            dashboardSection.classList.remove('hidden');
+            fetchVolunteerData();
+            startAutoRefresh();
+        } else {
+            // User is logged out, show login form
+            dashboardSection.classList.add('hidden');
+            loginSection.classList.remove('hidden');
+            loginForm.reset();
+            stopAutoRefresh();
+        }
+    });
+  </script>
+</body>
+</html>
