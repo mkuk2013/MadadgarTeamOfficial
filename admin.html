@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="sd" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>مددگار ٽيم | ايڊمن پينل</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://db.onlinewebfonts.com/c/555dfe40341db3b52f4b7bafc3bb2432?family=MB+Sindhi+Web" rel="stylesheet">
-  
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://db.onlinewebfonts.com/c/555dfe40341db3b52f4b7bafc3bb2432?family=MB+Sindhi+Web" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-
+  <!-- Include html2canvas for image-based PDF generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     :root {
-      --ajrak-red: #8B0000;
-      --ajrak-dark-blue: #0A2E65;
-      --ajrak-off-white: #F0E6D8;
+      --ajrak-red: #8b0000;
+      --ajrak-dark-blue: #0a2e65;
+      --ajrak-off-white: #f0e6d8;
     }
-
     body {
       font-family: 'MB Sindhi Web', serif;
       background-color: var(--ajrak-off-white);
@@ -26,12 +25,53 @@
     }
     .ajrak-container {
       background-color: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-    .text-ajrak-red { color: var(--ajrak-red); }
-    .text-ajrak-blue { color: var(--ajrak-dark-blue); }
-    .bg-ajrak-red { background-color: var(--ajrak-red); }
-    .bg-ajrak-blue { background-color: var(--ajrak-dark-blue); }
+    .text-ajrak-red {
+      color: var(--ajrak-red);
+    }
+    .text-ajrak-blue {
+      color: var(--ajrak-dark-blue);
+    }
+    .bg-ajrak-red {
+      background-color: var(--ajrak-red);
+    }
+    .bg-ajrak-blue {
+      background-color: var(--ajrak-dark-blue);
+    }
+    /* Styles for the printable table */
+    .print-table {
+      font-family: 'MB Sindhi Web', serif;
+      direction: rtl;
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    .print-table th, .print-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: right;
+    }
+    .print-table th {
+      background-color: var(--ajrak-dark-blue);
+      color: white;
+    }
+    .print-table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    .print-container {
+      font-family: 'MB Sindhi Web', serif;
+      direction: rtl;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .print-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -40,24 +80,24 @@
       <h1 class="text-4xl md:text-5xl font-bold text-ajrak-blue">مددگار ٽيم | ايڊمن پينل</h1>
       <p class="text-xl text-ajrak-red mt-2">ڊيش بورڊ</p>
     </header>
-
     <!-- Login Section -->
     <section id="login-section" class="max-w-md mx-auto ajrak-container p-6 rounded-lg shadow-xl">
       <h2 class="text-2xl font-bold text-center text-ajrak-red mb-6">لاگ ان</h2>
       <form id="login-form">
         <div class="mb-4">
           <label for="username" class="block text-gray-700 font-bold mb-2">ايميل (يوزر نالو)</label>
-          <input type="email" id="username" name="username" class="w-full px-3 py-2 border rounded-lg" required>
+          <input type="email" id="username" name="username" class="w-full px-3 py-2 border rounded-lg" required />
         </div>
         <div class="mb-6">
           <label for="password" class="block text-gray-700 font-bold mb-2">پاسورڊ</label>
-          <input type="password" id="password" name="password" class="w-full px-3 py-2 border rounded-lg" required>
+          <input type="password" id="password" name="password" class="w-full px-3 py-2 border rounded-lg" required />
         </div>
-        <button type="submit" class="w-full bg-ajrak-blue text-white font-bold py-3 rounded-lg hover:bg-blue-900 transition-colors">لاگ ان ڪريو</button>
+        <button type="submit" class="w-full bg-ajrak-blue text-white font-bold py-3 rounded-lg hover:bg-blue-900 transition-colors">
+          لاگ ان ڪريو
+        </button>
       </form>
       <p id="login-status" class="mt-4 text-center"></p>
     </section>
-
     <!-- Dashboard Section -->
     <section id="dashboard-section" class="hidden">
       <div class="flex justify-between items-center mb-6">
@@ -66,9 +106,7 @@
           <button id="refresh-btn" class="bg-ajrak-blue text-white py-2 px-4 rounded-lg hover:bg-blue-900 transition-colors">ري فريش</button>
         </div>
       </div>
-
       <div id="status-message" class="text-center text-lg font-bold mb-4"></div>
-
       <!-- Volunteer Data Section -->
       <div class="ajrak-container p-6 rounded-lg shadow-xl mb-8">
         <div class="flex justify-between items-center mb-4">
@@ -88,13 +126,10 @@
                 <th class="py-2 px-4 text-right">عمل</th>
               </tr>
             </thead>
-            <tbody id="volunteer-table-body">
-              <!-- Volunteer data will be inserted here -->
-            </tbody>
+            <tbody id="volunteer-table-body"></tbody>
           </table>
         </div>
       </div>
-
       <!-- Help Request Data Section -->
       <div class="ajrak-container p-6 rounded-lg shadow-xl">
         <div class="flex justify-between items-center mb-4">
@@ -115,24 +150,24 @@
                 <th class="py-2 px-4 text-right">عمل</th>
               </tr>
             </thead>
-            <tbody id="help-request-table-body">
-              <!-- Help request data will be inserted here -->
-            </tbody>
+            <tbody id="help-request-table-body"></tbody>
           </table>
         </div>
       </div>
     </section>
   </div>
 
+  <!-- Hidden container for PDF generation -->
+  <div id="print-container" class="print-container" style="display: none;">
+    <div id="print-title" class="print-title"></div>
+    <table id="print-table" class="print-table"></table>
+  </div>
+
   <script type="module">
-    // Supabase configuration
     const SUPABASE_URL = 'https://flcvjrbsijwpfjvpvzzp.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsY3ZqcmJzaWp3cGZqdnB2enpwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY5OTQzNTIsImV4cCI6MjA3MjU3MDM1Mn0.RQ14jDfnIVlga5LnfNA-mC79qtvTcut0LNkCV5_Sk_M';
-
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.44.2/+esm';
-
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
-
     const loginSection = document.getElementById('login-section');
     const dashboardSection = document.getElementById('dashboard-section');
     const loginForm = document.getElementById('login-form');
@@ -146,75 +181,65 @@
     const statusMessageDiv = document.getElementById('status-message');
     const downloadVolunteersPdfBtn = document.getElementById('download-volunteers-pdf-btn');
     const downloadHelpRequestsPdfBtn = document.getElementById('download-help-requests-pdf-btn');
-
+    const printContainer = document.getElementById('print-container');
+    const printTitle = document.getElementById('print-title');
+    const printTable = document.getElementById('print-table');
     let volunteersData = [];
     let helpRequestsData = [];
-
-    // This is a custom alert/confirm box to avoid using the browser's native `alert()` and `confirm()` which are blocked in the environment.
+    
     function showConfirmationDialog(message, onConfirm) {
-        // Create a simple modal/dialog element
-        const dialog = document.createElement('div');
-        dialog.style.position = 'fixed';
-        dialog.style.top = '50%';
-        dialog.style.left = '50%';
-        dialog.style.transform = 'translate(-50%, -50%)';
-        dialog.style.backgroundColor = 'white';
-        dialog.style.padding = '20px';
-        dialog.style.borderRadius = '8px';
-        dialog.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-        dialog.style.zIndex = '1000';
-        dialog.style.textAlign = 'center';
-        
-        dialog.innerHTML = `
+      const dialog = document.createElement('div');
+      dialog.style.position = 'fixed';
+      dialog.style.top = '50%';
+      dialog.style.left = '50%';
+      dialog.style.transform = 'translate(-50%, -50%)';
+      dialog.style.backgroundColor = 'white';
+      dialog.style.padding = '20px';
+      dialog.style.borderRadius = '8px';
+      dialog.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+      dialog.style.zIndex = '1000';
+      dialog.style.textAlign = 'center';
+      dialog.innerHTML = `
             <p class="text-xl font-bold mb-4">${message}</p>
             <div class="flex justify-center space-x-4">
                 <button id="confirm-yes" class="bg-red-500 text-white px-4 py-2 rounded">ها</button>
                 <button id="confirm-no" class="bg-gray-300 text-gray-800 px-4 py-2 rounded">نه</button>
             </div>
         `;
-        document.body.appendChild(dialog);
-
-        // Add event listeners for the buttons
-        document.getElementById('confirm-yes').onclick = () => {
-            onConfirm(true);
-            dialog.remove();
-        };
-        document.getElementById('confirm-no').onclick = () => {
-            onConfirm(false);
-            dialog.remove();
-        };
+      document.body.appendChild(dialog);
+      document.getElementById('confirm-yes').onclick = () => {
+        onConfirm(true);
+        dialog.remove();
+      };
+      document.getElementById('confirm-no').onclick = () => {
+        onConfirm(false);
+        dialog.remove();
+      };
     }
-
+    
     function showMessage(message, isError = false) {
       statusMessageDiv.textContent = message;
       statusMessageDiv.style.color = isError ? 'red' : 'green';
     }
-
-    // Function to fetch and display volunteer data
+    
     async function fetchVolunteerData() {
-      const { data, error } = await supabase
-        .from('volunteers')
-        .select('*')
-        .order('timestamp', { ascending: false }); // Sort by timestamp
-
+      const { data, error } = await supabase.from('volunteers').select('*').order('timestamp', { ascending: false });
       if (error) {
-        console.error('Error fetching volunteer data:', error);
         showMessage('رضاڪارن جي ڊيٽا حاصل ڪرڻ ۾ ناڪامي.', true);
         return;
       }
-
       volunteersData = data;
-      volunteerTableBody.innerHTML = ''; // Clear previous data
-      if (data && data.length > 0) {
-        data.forEach(volunteer => {
+      volunteerTableBody.innerHTML = '';
+      if (data.length) {
+        data.forEach(v => {
           const row = document.createElement('tr');
           row.className = 'border-b hover:bg-gray-50';
           row.innerHTML = `
-            <td class="py-2 px-4">${volunteer.name}</td>
-            <td class="py-2 px-4">${volunteer.phone}</td>
-            <td class="py-2 px-4">${volunteer.message}</td>
+            <td class="py-2 px-4">${v.name}</td>
+            <td class="py-2 px-4">${v.phone}</td>
+            <td class="py-2 px-4">${v.message}</td>
             <td class="py-2 px-4">
-              <button data-id="${volunteer.id}" class="delete-volunteer-btn text-ajrak-red hover:text-red-900 transition-colors">
+              <button data-id="${v.id}" class="delete-volunteer-btn text-ajrak-red hover:text-red-900 transition-colors" title="ختم ڪريو">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v2M4 7h16" />
                 </svg>
@@ -223,38 +248,31 @@
           `;
           volunteerTableBody.appendChild(row);
         });
-        showMessage('رضاڪارن جي ڊيٽا ڪاميابي سان حاصل ڪئي وئي.', false);
+        showMessage('رضاڪارن جي ڊيٽا ڪاميابي سان حاصل ڪئي وئي.');
       } else {
         showMessage('رضاڪارن جي ڪا به ڊيٽا نه ملي.', true);
       }
     }
-
-    // Function to fetch and display help request data
+    
     async function fetchHelpRequestData() {
-      const { data, error } = await supabase
-        .from('help_requests')
-        .select('*')
-        .order('created_at', { ascending: false }); // Sort by created_at
-
+      const { data, error } = await supabase.from('help_requests').select('*').order('created_at', { ascending: false });
       if (error) {
-        console.error('Error fetching help request data:', error);
         showMessage('مدد جي درخواستن جي ڊيٽا حاصل ڪرڻ ۾ ناڪامي.', true);
         return;
       }
-
       helpRequestsData = data;
-      helpRequestTableBody.innerHTML = ''; // Clear previous data
-      if (data && data.length > 0) {
-        data.forEach(request => {
+      helpRequestTableBody.innerHTML = '';
+      if (data.length) {
+        data.forEach(r => {
           const row = document.createElement('tr');
           row.className = 'border-b hover:bg-gray-50';
           row.innerHTML = `
-            <td class="py-2 px-4">${request.name}</td>
-            <td class="py-2 px-4">${request.phone}</td>
-            <td class="py-2 px-4">${request.address}</td>
-            <td class="py-2 px-4">${request.details}</td>
+            <td class="py-2 px-4">${r.name}</td>
+            <td class="py-2 px-4">${r.phone}</td>
+            <td class="py-2 px-4">${r.address}</td>
+            <td class="py-2 px-4">${r.details}</td>
             <td class="py-2 px-4">
-              <button data-id="${request.id}" class="delete-help-request-btn text-ajrak-red hover:text-red-900 transition-colors">
+              <button data-id="${r.id}" class="delete-help-request-btn text-ajrak-red hover:text-red-900 transition-colors" title="ختم ڪريو">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v2M4 7h16" />
                 </svg>
@@ -263,130 +281,167 @@
           `;
           helpRequestTableBody.appendChild(row);
         });
-        showMessage('مدد جي درخواستن جي ڊيٽا ڪاميابي سان حاصل ڪئي وئي.', false);
+        showMessage('مدد جي درخواستن جي ڊيٽا ڪاميابي سان حاصل ڪئي وئي.');
       } else {
         showMessage('مدد جي درخواستن جي ڪا به ڊيٽا نه ملي.', true);
       }
     }
-
-    // Function to fetch all data
+    
     function fetchAllData() {
       fetchVolunteerData();
       fetchHelpRequestData();
     }
     
-    // Function to handle single volunteer deletion
     async function deleteVolunteer(id) {
-        showConfirmationDialog('ڇا توهان واقعي هن رضاڪار کي ختم ڪرڻ چاهيو ٿا؟', async (confirmed) => {
-            if (!confirmed) return;
-
-            const { error } = await supabase
-                .from('volunteers')
-                .delete()
-                .eq('id', id);
-
-            if (error) {
-                console.error('Error deleting volunteer:', error);
-                showMessage('رضاڪار کي ختم ڪرڻ ۾ ناڪامي.', true);
-            } else {
-                showMessage('رضاڪار ڪاميابي سان ختم ڪيو ويو.');
-                fetchVolunteerData(); // Refresh the table
-            }
-        });
-    }
-
-    // Function to handle single help request deletion
-    async function deleteHelpRequest(id) {
-        showConfirmationDialog('ڇا توهان واقعي هن مدد جي درخواست کي ختم ڪرڻ چاهيو ٿا؟', async (confirmed) => {
-            if (!confirmed) return;
-
-            const { error } = await supabase
-                .from('help_requests')
-                .delete()
-                .eq('id', id);
-
-            if (error) {
-                console.error('Error deleting help request:', error);
-                showMessage('مدد جي درخواست کي ختم ڪرڻ ۾ ناڪامي.', true);
-            } else {
-                showMessage('مدد جي درخواست ڪاميابي سان ختم ڪئي وئي.');
-                fetchHelpRequestData(); // Refresh the table
-            }
-        });
-    }
-
-    // Function to handle deleting all data from a table
-    async function deleteAllData(tableName) {
-        showConfirmationDialog(`ڇا توهان واقعي ${tableName} مان سموري ڊيٽا ختم ڪرڻ چاهيو ٿا؟ هي عمل واپس نه ٿو ٿي سگهي!`, async (confirmed) => {
-            if (!confirmed) return;
-            
-            let error;
-            // The previous method was using .neq('id', '0') which caused an error because '0' is not a valid UUID.
-            // A better way is to use a filter on a non-UUID column like timestamp to delete all rows.
-            if (tableName === 'volunteers') {
-                ({ error } = await supabase
-                    .from('volunteers')
-                    .delete()
-                    .not('timestamp', 'is', null));
-            } else if (tableName === 'help_requests') {
-                ({ error } = await supabase
-                    .from('help_requests')
-                    .delete()
-                    .not('created_at', 'is', null));
-            }
-
-            if (error) {
-                console.error(`Error deleting all data from ${tableName}:`, error);
-                showMessage(`سڀني ڊيٽا کي ختم ڪرڻ ۾ ناڪامي.`, true);
-            } else {
-                showMessage(`سموري ڊيٽا ڪاميابي سان ختم ڪئي وئي.`);
-                if (tableName === 'volunteers') {
-                    fetchVolunteerData();
-                } else {
-                    fetchHelpRequestData();
-                }
-            }
-        });
-    }
-
-    // Function to download table data as a PDF
-    function downloadTableAsPdf(tableName, data) {
-        if (!data || data.length === 0) {
-            showMessage(`ڊائونلوڊ ڪرڻ لاءِ ڪا به ڊيٽا موجود ناهي ${tableName}`, true);
-            return;
+      showConfirmationDialog('ڇا توهان واقعي هن رضاڪار کي ختم ڪرڻ چاهيو ٿا؟', async (confirmed) => {
+        if (!confirmed) return;
+        const { error } = await supabase.from('volunteers').delete().eq('id', id);
+        if (error) {
+          showMessage('رضاڪار کي ختم ڪرڻ ۾ ناڪامي.', true);
+        } else {
+          showMessage('رضاڪار ڪاميابي سان ختم ڪيو ويو.');
+          fetchVolunteerData();
         }
-
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-
-        const columns = tableName === 'volunteers' ? [
-            { header: 'نالو', dataKey: 'name' },
-            { header: 'موبائل نمبر', dataKey: 'phone' },
-            { header: 'پيغام', dataKey: 'message' }
-        ] : [
-            { header: 'نالو', dataKey: 'name' },
-            { header: 'موبائل نمبر', dataKey: 'phone' },
-            { header: 'پتو', dataKey: 'address' },
-            { header: 'تفصيل', dataKey: 'details' }
-        ];
-
-        doc.autoTable({
-            startY: 10,
-            head: [columns.map(col => col.header)],
-            body: data.map(row => columns.map(col => row[col.dataKey])),
-            theme: 'striped',
-            styles: {
-                font: 'NotoSans', // Use a font that supports Sindhi characters if needed
-                fontSize: 10,
-                halign: 'right', // Align text to the right for RTL
-            },
-            headStyles: {
-                fillColor: tableName === 'volunteers' ? '#0A2E65' : '#8B0000',
-            },
+      });
+    }
+    
+    async function deleteHelpRequest(id) {
+      showConfirmationDialog('ڇا توهان واقعي هن مدد جي درخواست کي ختم ڪرڻ چاهيو ٿا؟', async (confirmed) => {
+        if (!confirmed) return;
+        const { error } = await supabase.from('help_requests').delete().eq('id', id);
+        if (error) {
+          showMessage('مدد جي درخواست کي ختم ڪرڻ ۾ ناڪامي.', true);
+        } else {
+          showMessage('مدد جي درخواست ڪاميابي سان ختم ڪئي وئي.');
+          fetchHelpRequestData();
+        }
+      });
+    }
+    
+    async function deleteAllData(tableName) {
+      showConfirmationDialog(`ڇا توهان واقعي ${tableName} مان سموري ڊيٽا ختم ڪرڻ چاهيو ٿا؟ هي عمل واپس نه ٿو ٿي سگهي!`, async (confirmed) => {
+        if (!confirmed) return;
+        let error;
+        if (tableName === 'volunteers') {
+          ({ error } = await supabase.from('volunteers').delete().not('timestamp', 'is', null));
+        } else if (tableName === 'help_requests') {
+          ({ error } = await supabase.from('help_requests').delete().not('created_at', 'is', null));
+        }
+        if (error) {
+          showMessage(`سڀني ڊيٽا کي ختم ڪرڻ ۾ ناڪامي.`, true);
+        } else {
+          showMessage(`سموري ڊيٽا ڪاميابي سان ختم ڪئي وئي.`);
+          if (tableName === 'volunteers') fetchVolunteerData();
+          else fetchHelpRequestData();
+        }
+      });
+    }
+    
+    function downloadTableAsPdf(tableName, data) {
+      if (!data || data.length === 0) {
+        showMessage(`ڊائونلوڊ ڪرڻ لاءِ ڪا به ڊيٽا موجود ناهي ${tableName}`, true);
+        return;
+      }
+      
+      // Set title based on table type
+      printTitle.textContent = tableName === 'volunteers' ? 'رضاڪارن جي ڊيٽا' : 'مدد جي درخواستن جي ڊيٽا';
+      
+      // Clear existing table content
+      printTable.innerHTML = '';
+      
+      // Create table header
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      
+      if (tableName === 'volunteers') {
+        const headers = ['نالو', 'موبائل نمبر', 'پيغام'];
+        headers.forEach(headerText => {
+          const th = document.createElement('th');
+          th.textContent = headerText;
+          headerRow.appendChild(th);
         });
-
-        doc.save(`${tableName}-data.pdf`);
+      } else {
+        const headers = ['نالو', 'موبائل نمبر', 'پتو', 'تفصيل'];
+        headers.forEach(headerText => {
+          const th = document.createElement('th');
+          th.textContent = headerText;
+          headerRow.appendChild(th);
+        });
+      }
+      
+      thead.appendChild(headerRow);
+      printTable.appendChild(thead);
+      
+      // Create table body
+      const tbody = document.createElement('tbody');
+      
+      data.forEach(row => {
+        const tr = document.createElement('tr');
+        
+        if (tableName === 'volunteers') {
+          const nameCell = document.createElement('td');
+          nameCell.textContent = row.name;
+          tr.appendChild(nameCell);
+          
+          const phoneCell = document.createElement('td');
+          phoneCell.textContent = row.phone;
+          tr.appendChild(phoneCell);
+          
+          const messageCell = document.createElement('td');
+          messageCell.textContent = row.message;
+          tr.appendChild(messageCell);
+        } else {
+          const nameCell = document.createElement('td');
+          nameCell.textContent = row.name;
+          tr.appendChild(nameCell);
+          
+          const phoneCell = document.createElement('td');
+          phoneCell.textContent = row.phone;
+          tr.appendChild(phoneCell);
+          
+          const addressCell = document.createElement('td');
+          addressCell.textContent = row.address;
+          tr.appendChild(addressCell);
+          
+          const detailsCell = document.createElement('td');
+          detailsCell.textContent = row.details;
+          tr.appendChild(detailsCell);
+        }
+        
+        tbody.appendChild(tr);
+      });
+      
+      printTable.appendChild(tbody);
+      
+      // Show the print container
+      printContainer.style.display = 'block';
+      
+      // Use html2canvas to capture the table as an image
+      html2canvas(printContainer, {
+        scale: 2,
+        logging: false,
+        useCORS: true,
+        backgroundColor: '#ffffff'
+      }).then(canvas => {
+        // Hide the print container again
+        printContainer.style.display = 'none';
+        
+        // Create PDF
+        const { jsPDF } = window.jspdf;
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`${tableName}-data.pdf`);
         showMessage(`ڊيٽا ڪاميابي سان ڊائونلوڊ ٿي وئي.`, false);
+      }).catch(error => {
+        console.error('Error generating PDF:', error);
+        showMessage('PDF ٺاهڻ ۾ ناڪامي.', true);
+        printContainer.style.display = 'none';
+      });
     }
     
     // Handle login form submission
@@ -396,26 +451,20 @@
       
       const email = e.target.username.value;
       const password = e.target.password.value;
-
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password
       });
-
       if (error) {
         console.error('Login error:', error);
         loginStatus.textContent = 'لاگ ان ٿيڻ ۾ ناڪامي: ' + error.message;
         loginStatus.style.color = 'red';
-        // Note: The "Invalid login credentials" error is not a bug in the code.
-        // It means the email/password combination you entered does not exist in your Supabase project's authentication table.
-        // Please check your credentials in the Supabase dashboard and try again.
       } else {
-        // Supabase authentication successful. The onAuthStateChange listener will handle the UI update.
         loginStatus.textContent = 'لاگ آئوٽ ڪامياب!...';
         loginStatus.style.color = 'green';
       }
     });
-
+    
     // Handle logout button click
     logoutBtn.addEventListener('click', async () => {
       const { error } = await supabase.auth.signOut();
@@ -426,7 +475,7 @@
         showMessage('لاگ آئوٽ ڪاميابي سان ٿي ويو.');
       }
     });
-
+    
     // Add event listeners for the new buttons
     downloadVolunteersPdfBtn.addEventListener('click', () => downloadTableAsPdf('volunteers', volunteersData));
     downloadHelpRequestsPdfBtn.addEventListener('click', () => downloadTableAsPdf('help_requests', helpRequestsData));
@@ -434,7 +483,7 @@
     // Add event listeners for the "Delete All" buttons
     deleteAllVolunteersBtn.addEventListener('click', () => deleteAllData('volunteers'));
     deleteAllHelpRequestsBtn.addEventListener('click', () => deleteAllData('help_requests'));
-
+    
     // Add event delegation for single row delete buttons
     volunteerTableBody.addEventListener('click', (e) => {
       const deleteBtn = e.target.closest('.delete-volunteer-btn');
@@ -443,7 +492,7 @@
         deleteVolunteer(id);
       }
     });
-
+    
     helpRequestTableBody.addEventListener('click', (e) => {
       const deleteBtn = e.target.closest('.delete-help-request-btn');
       if (deleteBtn) {
@@ -451,7 +500,7 @@
         deleteHelpRequest(id);
       }
     });
-
+    
     // Supabase auth state change listener
     supabase.auth.onAuthStateChange((event, session) => {
       if (session) {
@@ -466,7 +515,7 @@
         loginForm.reset();
       }
     });
-
+    
     // Initial check for authentication state
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
